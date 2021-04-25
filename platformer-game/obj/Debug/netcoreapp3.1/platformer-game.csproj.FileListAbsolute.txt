@@ -1,0 +1,60 @@
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\vår-termin-projekt\platformer-game\bin\Debug\netcoreapp3.1\platformer-game.exe
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\vår-termin-projekt\platformer-game\bin\Debug\netcoreapp3.1\platformer-game.deps.json
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\vår-termin-projekt\platformer-game\bin\Debug\netcoreapp3.1\platformer-game.runtimeconfig.json
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\vår-termin-projekt\platformer-game\bin\Debug\netcoreapp3.1\platformer-game.runtimeconfig.dev.json
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\vår-termin-projekt\platformer-game\bin\Debug\netcoreapp3.1\platformer-game.dll
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\vår-termin-projekt\platformer-game\bin\Debug\netcoreapp3.1\platformer-game.pdb
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\vår-termin-projekt\platformer-game\obj\Debug\netcoreapp3.1\platformer-game.csprojAssemblyReference.cache
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\vår-termin-projekt\platformer-game\obj\Debug\netcoreapp3.1\platformer-game.AssemblyInfoInputs.cache
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\vår-termin-projekt\platformer-game\obj\Debug\netcoreapp3.1\platformer-game.AssemblyInfo.cs
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\vår-termin-projekt\platformer-game\obj\Debug\netcoreapp3.1\platformer-game.csproj.CoreCompileInputs.cache
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\vår-termin-projekt\platformer-game\obj\Debug\netcoreapp3.1\platformer-game.dll
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\vår-termin-projekt\platformer-game\obj\Debug\netcoreapp3.1\platformer-game.pdb
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\vår-termin-projekt\platformer-game\obj\Debug\netcoreapp3.1\platformer-game.genruntimeconfig.cache
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\vår-termin-projekt\platformer-game\bin\Debug\netcoreapp3.1\Raylib-cs.dll
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\vår-termin-projekt\platformer-game\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libraylib.so
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\vår-termin-projekt\platformer-game\bin\Debug\netcoreapp3.1\runtimes\linux-x86\native\libraylib.so
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\vår-termin-projekt\platformer-game\bin\Debug\netcoreapp3.1\runtimes\osx-x64\native\libraylib.dylib
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\vår-termin-projekt\platformer-game\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\raylib.dll
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\vår-termin-projekt\platformer-game\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\raylib.dll
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\vår-termin-projekt\platformer-game\obj\Debug\netcoreapp3.1\platformer-game.csproj.CopyComplete
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca\platformer-game\obj\Debug\netcoreapp3.1\platformer-game.csprojAssemblyReference.cache
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca\platformer-game\obj\Debug\netcoreapp3.1\platformer-game.AssemblyInfoInputs.cache
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca\platformer-game\obj\Debug\netcoreapp3.1\platformer-game.AssemblyInfo.cs
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca\platformer-game\obj\Debug\netcoreapp3.1\platformer-game.csproj.CoreCompileInputs.cache
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca\platformer-game\obj\Debug\netcoreapp3.1\platformer-game.dll
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca\platformer-game\obj\Debug\netcoreapp3.1\platformer-game.pdb
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca\platformer-game\bin\Debug\netcoreapp3.1\platformer-game.exe
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca\platformer-game\bin\Debug\netcoreapp3.1\platformer-game.deps.json
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca\platformer-game\bin\Debug\netcoreapp3.1\platformer-game.runtimeconfig.json
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca\platformer-game\bin\Debug\netcoreapp3.1\platformer-game.runtimeconfig.dev.json
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca\platformer-game\bin\Debug\netcoreapp3.1\platformer-game.dll
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca\platformer-game\bin\Debug\netcoreapp3.1\platformer-game.pdb
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca\platformer-game\bin\Debug\netcoreapp3.1\Raylib-cs.dll
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca\platformer-game\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libraylib.so
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca\platformer-game\bin\Debug\netcoreapp3.1\runtimes\linux-x86\native\libraylib.so
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca\platformer-game\bin\Debug\netcoreapp3.1\runtimes\osx-x64\native\libraylib.dylib
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca\platformer-game\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\raylib.dll
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca\platformer-game\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\raylib.dll
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca\platformer-game\obj\Debug\netcoreapp3.1\platformer-game.csproj.CopyComplete
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca\platformer-game\obj\Debug\netcoreapp3.1\platformer-game.genruntimeconfig.cache
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca - Vårtermin Slutprojekt\platformer-game\bin\Debug\netcoreapp3.1\platformer-game.exe
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca - Vårtermin Slutprojekt\platformer-game\bin\Debug\netcoreapp3.1\platformer-game.deps.json
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca - Vårtermin Slutprojekt\platformer-game\bin\Debug\netcoreapp3.1\platformer-game.runtimeconfig.json
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca - Vårtermin Slutprojekt\platformer-game\bin\Debug\netcoreapp3.1\platformer-game.runtimeconfig.dev.json
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca - Vårtermin Slutprojekt\platformer-game\bin\Debug\netcoreapp3.1\platformer-game.dll
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca - Vårtermin Slutprojekt\platformer-game\bin\Debug\netcoreapp3.1\platformer-game.pdb
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca - Vårtermin Slutprojekt\platformer-game\bin\Debug\netcoreapp3.1\Raylib-cs.dll
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca - Vårtermin Slutprojekt\platformer-game\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libraylib.so
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca - Vårtermin Slutprojekt\platformer-game\bin\Debug\netcoreapp3.1\runtimes\linux-x86\native\libraylib.so
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca - Vårtermin Slutprojekt\platformer-game\bin\Debug\netcoreapp3.1\runtimes\osx-x64\native\libraylib.dylib
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca - Vårtermin Slutprojekt\platformer-game\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\raylib.dll
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca - Vårtermin Slutprojekt\platformer-game\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\raylib.dll
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca - Vårtermin Slutprojekt\platformer-game\obj\Debug\netcoreapp3.1\platformer-game.csprojAssemblyReference.cache
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca - Vårtermin Slutprojekt\platformer-game\obj\Debug\netcoreapp3.1\platformer-game.AssemblyInfoInputs.cache
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca - Vårtermin Slutprojekt\platformer-game\obj\Debug\netcoreapp3.1\platformer-game.AssemblyInfo.cs
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca - Vårtermin Slutprojekt\platformer-game\obj\Debug\netcoreapp3.1\platformer-game.csproj.CoreCompileInputs.cache
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca - Vårtermin Slutprojekt\platformer-game\obj\Debug\netcoreapp3.1\platformer-game.csproj.CopyComplete
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca - Vårtermin Slutprojekt\platformer-game\obj\Debug\netcoreapp3.1\platformer-game.dll
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca - Vårtermin Slutprojekt\platformer-game\obj\Debug\netcoreapp3.1\platformer-game.pdb
+C:\Users\Bianca.reutergardh\Desktop\SKOLA\Programmering\The Legend of Bianca - Vårtermin Slutprojekt\platformer-game\obj\Debug\netcoreapp3.1\platformer-game.genruntimeconfig.cache

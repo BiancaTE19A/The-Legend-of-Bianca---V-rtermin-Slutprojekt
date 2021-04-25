@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "jf5cnW7Hto4aakSp4LzJzsqa6tQlZczZbda4M4ORnShoBluKHSzZQm6D2s/Be8YIm17LEEvhe9anBMvXvtDluA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Bianca.reutergardh\\Desktop\\SKOLA\\Programmering\\The Legend of Bianca - Vårtermin Slutprojekt\\platformer-game\\platformer-game.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Bianca.reutergardh\\.nuget\\packages\\raylib-cs\\3.5.0\\raylib-cs.3.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
