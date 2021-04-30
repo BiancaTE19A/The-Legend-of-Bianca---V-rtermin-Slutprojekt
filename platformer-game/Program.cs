@@ -32,6 +32,8 @@ namespace platformer_game
             bool moving = false;
             bool movingGrass = false;
             Random r = new Random();
+            int enemy = r.Next(3);
+            int playerTile = -1;
 
 
             //CAMERA VALUES
@@ -42,6 +44,7 @@ namespace platformer_game
             camera.rotation = 0.0f;
             camera.zoom = 1.0f;
 
+            //TILE VALUES
             List<string> tileMap = new List<string>()
             {".",".",".","#",".",".",".",".","#",".",".",".",
              ".",".",".","#",".",".",".",".","#",".",".",".",
@@ -57,6 +60,10 @@ namespace platformer_game
             int cols = 12;
             int rows = 10;
 
+            Tile test = new Tile(0, 0, scl, scl, "grass");
+
+            List<Rectangle> grassTiles = new List<Rectangle>();
+
             while (!Raylib.WindowShouldClose())
             {
                 if (gameState == "game")
@@ -66,10 +73,8 @@ namespace platformer_game
                     playerTile = 0;
 
 
+
                     //grass collision
-                    List<Rectangle> grassTiles = new List<Rectangle>();
-
-
                     for (int i = 0; i < tileMap.Count; i++)
                     {
                         if (tileMap[i] == ".")
@@ -79,17 +84,15 @@ namespace platformer_game
                             grassTiles.Add(new Rectangle(x * scl, y * scl, scl, scl));
                         }
                     }
+
                     for (int i = 0; i < grassTiles.Count; i++)
                     {
                         if (Raylib.CheckCollisionRecs(player, grassTiles[i]) && moving == true)
                         {
                             velocity = 3;
                             playerTile = i;
-                            r = generator.Next();
                         }
                     }
-
-
 
                     //controls
                     if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT) || Raylib.IsKeyDown(KeyboardKey.KEY_D))
@@ -114,18 +117,25 @@ namespace platformer_game
                     }//ändra lite på demhär asså
 
                     //border control
-                    int returnValueX = clamp((int)player.x, 0, (int)cols * (int)scl - (int)player.width);
-                    player.x = returnValueX;
-                    int returnValueY = clamp((int)player.y, 0, (int)rows * (int)scl - (int)player.width);
-                    player.y = returnValueY;
+                    int returnPosX = clamp((int)player.x, 0, (int)cols * (int)scl - (int)player.width);
+                    player.x = returnPosX;
+                    int returnPosY = clamp((int)player.y, 0, (int)rows * (int)scl - (int)player.width);
+                    player.y = returnPosY;
 
                     camera.target = new Vector2(player.x + player.width / 2, player.y + player.height / 2);
 
                     Raylib.BeginDrawing();
                     Raylib.DrawText("X: " + player.x + " Y: " + player.y, 100, 100, 32, Color.BLACK);
                     Raylib.DrawText("" + playerTile, 100, 10, 20, Color.BLACK);
+
+                    Raylib.DrawRectangleRec(test.rec, Color.BROWN);
                     Raylib.ClearBackground(Color.WHITE);
                     Raylib.BeginMode2D(camera);
+                    for (int j = 0; j < 3; j++)
+                    {
+                        Raylib.DrawText("" + enemy, -100, 100 * j, 100, Color.BLACK);
+                        enemy = r.Next(3);
+                    }//grassTiles.Count
 
                     //initial draw level
                     // for (int i = 0; i < tileMap.Count; i++)
@@ -191,17 +201,17 @@ namespace platformer_game
                 }
             }
         }
-        static int clamp(int value, int min, int max)
+        static int clamp(int pos, int min, int max)
         {
-            if (value < min)
+            if (pos < min)
             {
-                value = min;
+                pos = min;
             }
-            if (value > max)
+            if (pos > max)
             {
-                value = max;
+                pos = max;
             }
-            return value;
+            return pos;
         }
     }
 }
