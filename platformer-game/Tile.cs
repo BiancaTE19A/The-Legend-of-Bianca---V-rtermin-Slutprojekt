@@ -18,7 +18,5 @@ namespace platformer_game
             rec = new Rectangle(x, y, w, h);
             type = t;
         }
-
-
     }
 }

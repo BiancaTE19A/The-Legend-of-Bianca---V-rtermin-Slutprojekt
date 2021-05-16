@@ -10,7 +10,7 @@ namespace platformer_game
     {
         static void Main(string[] args)
         {
-            //kommentera på engelska, beskriv en kod snutt så att man vet vad den gör
+            //beskriv en kod snutt så att man vet vad den gör
             //utvärderqa varför du valt en specifik grej, tex varför jag valt en while loop här ist för en for osv
             //skapa fiender i gräset - här kan metoder, klasser, random generator osv användas
             //kolla checklista för november projekt
@@ -30,15 +30,12 @@ namespace platformer_game
             int scl = 200;
             int velocity = 5;
             bool moving = false;
-            bool movingGrass = false;
             Random r = new Random();
             int enemy = r.Next(3);
             int playerTile = -1;
 
-
             //CAMERA VALUES
             Rectangle player = new Rectangle(340, 830, scl / 2, scl / 2);
-
             Camera2D camera = new Camera2D();
             camera.offset = new Vector2(screenWidth / 2, screenHeight / 2);
             camera.rotation = 0.0f;
@@ -60,21 +57,16 @@ namespace platformer_game
             int cols = 12;
             int rows = 10;
 
-            Tile test = new Tile(0, 0, scl, scl, "grass");
-
             List<Rectangle> grassTiles = new List<Rectangle>();
 
             while (!Raylib.WindowShouldClose())
             {
                 if (gameState == "game")
                 {
-                    //values 
                     velocity = 5;
                     playerTile = 0;
 
-
-
-                    //grass collision
+                    //GRASS COLLISION
                     for (int i = 0; i < tileMap.Count; i++)
                     {
                         if (tileMap[i] == ".")
@@ -84,7 +76,6 @@ namespace platformer_game
                             grassTiles.Add(new Rectangle(x * scl, y * scl, scl, scl));
                         }
                     }
-
                     for (int i = 0; i < grassTiles.Count; i++)
                     {
                         if (Raylib.CheckCollisionRecs(player, grassTiles[i]) && moving == true)
@@ -94,7 +85,7 @@ namespace platformer_game
                         }
                     }
 
-                    //controls
+                    //MOVEMENT CONTROLS
                     if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT) || Raylib.IsKeyDown(KeyboardKey.KEY_D))
                     {
                         player.x += velocity;
@@ -114,66 +105,28 @@ namespace platformer_game
                     {
                         player.y -= velocity;
                         moving = true;
-                    }//ändra lite på demhär asså
+                    }
 
-                    //border control
-                    int returnPosX = clamp((int)player.x, 0, (int)cols * (int)scl - (int)player.width);
+                    //BORDER CONTROL
+                    int returnPosX = border((int)player.x, 0, (int)cols * (int)scl - (int)player.width);
                     player.x = returnPosX;
-                    int returnPosY = clamp((int)player.y, 0, (int)rows * (int)scl - (int)player.width);
+                    int returnPosY = border((int)player.y, 0, (int)rows * (int)scl - (int)player.width);
                     player.y = returnPosY;
 
+                    //CAMERA 
                     camera.target = new Vector2(player.x + player.width / 2, player.y + player.height / 2);
 
+                    //BEGIN DRAW
                     Raylib.BeginDrawing();
-                    Raylib.DrawText("X: " + player.x + " Y: " + player.y, 100, 100, 32, Color.BLACK);
-                    Raylib.DrawText("" + playerTile, 100, 10, 20, Color.BLACK);
-
-                    Raylib.DrawRectangleRec(test.rec, Color.BROWN);
                     Raylib.ClearBackground(Color.WHITE);
                     Raylib.BeginMode2D(camera);
-                    for (int j = 0; j < 3; j++)
-                    {
-                        Raylib.DrawText("" + enemy, -100, 100 * j, 100, Color.BLACK);
-                        enemy = r.Next(3);
-                    }//grassTiles.Count
 
-                    //initial draw level
-                    // for (int i = 0; i < tileMap.Count; i++)
-                    // {
-                    //     if (count >= 12)//next row
-                    //     {
-                    //         grassTile.y += scl;
-                    //         grassTile.x = -860;
-                    //         roadTile.y += scl;
-                    //         roadTile.x = -860;
-                    //         count = 0;
-
-                    //     }
-                    //     if (tileMap[i] == ".")
-                    //     {
-                    //         Raylib.DrawRectangleRec(grassTile, Color.DARKGREEN);
-                    //         roadTile.x += scl;
-                    //         grassTile.x += scl;
-                    //         count++;
-                    //         Raylib.DrawText("X: " + grassTile.x + " Y: " + grassTile.y, (int)grassTile.x, (int)grassTile.y, 20, Color.BLACK);
-
-                    //     }
-                    //     else if (tileMap[i] == "#")
-                    //     {
-                    //         Raylib.DrawRectangleRec(roadTile, Color.DARKBROWN);
-                    //         roadTile.x += scl;
-                    //         grassTile.x += scl;
-                    //         count++;
-                    //         Raylib.DrawText("X: " + roadTile.x + " Y: " + roadTile.y, (int)roadTile.x, (int)roadTile.y, 20, Color.BLACK);
-                    //     }
-                    // }
-
-                    //draw level
+                    //DRAW LEVEL
                     for (int i = 0; i < rows; i++)
                     {
                         for (int j = 0; j < cols; j++)
                         {
-                            if (tileMap[j + i * cols] == ".")
+                            if (tileMap[i * cols + j] == ".")
                             {
                                 Raylib.DrawRectangle(j * scl, i * scl, scl, scl, Color.DARKGREEN);
                             }
@@ -183,17 +136,26 @@ namespace platformer_game
                             }
                         }
                     }
+                    //  {".",".",".","#",".",".",".",".","#",".",".",".",
+                    //   ".",".",".","#",".",".",".",".","#",".",".",".",
+                    //   ".",".",".","#",".",".",".",".","#",".",".",".",
+                    //   ".",".",".","#",".",".",".",".","#",".",".",".",
+                    //   ".",".",".","#",".",".",".",".","#",".",".",".",
+                    //   "#","#","#","#","#","#","#","#","#","#","#","#",
+                    //   ".",".",".",".",".",".",".",".","#",".",".",".",
+                    //   ".",".",".",".",".",".",".",".","#",".",".",".",
+                    //   ".",".",".",".",".",".",".",".","#",".",".",".",
+                    //   ".",".",".",".",".",".",".",".","#",".",".",".",};    
 
-                    //Hjälp linjer
+                    //DRAW OUTLINE
                     for (int i = 0; i < 12; i++)
                     {
                         Raylib.DrawLine(scl * i, 0, scl * i, rows * scl, Color.BLACK);
                         Raylib.DrawLine(0, scl * i, cols * scl, scl * i, Color.BLACK);
                     }
 
-                    //DRAW RESTEN
+                    //DRAW PLAYER
                     Raylib.DrawRectangleRec(player, Color.RED);
-
                     Raylib.DrawLine((int)camera.target.X, -screenHeight * 10, (int)camera.target.X, screenHeight * 10, Color.GREEN);
                     Raylib.DrawLine(-screenWidth * 10, (int)camera.target.Y, screenWidth * 10, (int)camera.target.Y, Color.GREEN);
                     Raylib.EndMode2D();
@@ -201,7 +163,7 @@ namespace platformer_game
                 }
             }
         }
-        static int clamp(int pos, int min, int max)
+        static int border(int pos, int min, int max)
         {
             if (pos < min)
             {
