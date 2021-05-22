@@ -37,7 +37,7 @@ namespace platformer_game
             Camera2D camera = CreateCamera(player);
 
             //TILE VALUES
-            List<string> tileMap = new List<string>(GetMap());
+            string[] tileMap = (GetMap());
             List<Rectangle> grassTiles = new List<Rectangle>(CreateGrassTiles(tileMap, cols, scl));
 
             while (!Raylib.WindowShouldClose())
@@ -91,12 +91,13 @@ namespace platformer_game
             cam.zoom = 1.0f;
             return cam;
         }
-        static List<string> GetMap()
+        static string[] GetMap()
         {
-            //create map blueprint and add to list
-            List<string> map = new List<string>
-             {
-             ".",".",".","#",".",".",".",".","#",".",".",".",
+            //create map blueprint and add to array
+            //valt att använda array istället för lista eftersom det är mindre text
+            string[] map =
+            {
+            ".",".",".","#",".",".",".",".","#",".",".",".",
              ".",".",".","#",".",".",".",".","#",".",".",".",
              ".",".",".","#",".",".",".",".","#",".",".",".",
              ".",".",".","#",".",".",".",".","#",".",".",".",
@@ -105,13 +106,16 @@ namespace platformer_game
              ".",".",".",".",".",".",".",".","#",".",".",".",
              ".",".",".",".",".",".",".",".","#",".",".",".",
              ".",".",".",".",".",".",".",".","#",".",".",".",
-             ".",".",".",".",".",".",".",".","#",".",".",".",};
+             ".",".",".",".",".",".",".",".","#",".",".",".",
+            };
             return map;
         }
-        static List<Rectangle> CreateGrassTiles(List<string> map, int cols, int scl)
+        static List<Rectangle> CreateGrassTiles(string[] map, int cols, int scl)
         {
+            //valt att använda mig utav en lista istället för array eftersom det är mycket effektivare 
+            //att lägga till saker i listor samt att ha en array av rektanglar är nog mycket mer advancerat
             List<Rectangle> grass = new List<Rectangle>();
-            for (int i = 0; i < map.Count; i++)
+            for (int i = 0; i < map.Length; i++)
             {
                 //go through map list and locate grass, then set x and y values for each rectangle
                 //then add rectangle to list
@@ -126,7 +130,7 @@ namespace platformer_game
         }
         static int GetGrassCollision(List<Rectangle> grass, Rectangle player, int vel)
         {
-            for (int i = 0; i < grass.Coxunt; i++)
+            for (int i = 0; i < grass.Count; i++)
             {
                 //when player collides with grass, make player move slower
                 if (Raylib.CheckCollisionRecs(player, grass[i]))
@@ -172,7 +176,7 @@ namespace platformer_game
             return pos;
         }
 
-        static void DrawLevel(List<string> map, int rows, int cols, int scl)
+        static void DrawLevel(string[] map, int rows, int cols, int scl)
         {
             //go through each row then each column on that row, to determen wether it's a grass- or dirt-string
             //then draw out tiles
