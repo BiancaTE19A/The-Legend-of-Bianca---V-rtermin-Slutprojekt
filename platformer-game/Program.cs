@@ -29,89 +29,35 @@ namespace platformer_game
             string gameState = "game";
             int scl = 200;
             int velocity = 5;
-            bool moving = false;
-            Random r = new Random();
-            int enemy = r.Next(3);
-            int playerTile = -1;
+            int rows = 10;
+            int cols = 12;
 
-            //CAMERA VALUES
+            //CAMERA AND PLAYER VALUES
             Rectangle player = new Rectangle(340, 830, scl / 2, scl / 2);
-            Camera2D camera = new Camera2D();
-            camera.offset = new Vector2(screenWidth / 2, screenHeight / 2);
-            camera.rotation = 0.0f;
-            camera.zoom = 1.0f;
+            Camera2D camera = CreateCamera(player);
 
             //TILE VALUES
-            List<string> tileMap = new List<string>()
-            {".",".",".","#",".",".",".",".","#",".",".",".",
-             ".",".",".","#",".",".",".",".","#",".",".",".",
-             ".",".",".","#",".",".",".",".","#",".",".",".",
-             ".",".",".","#",".",".",".",".","#",".",".",".",
-             ".",".",".","#",".",".",".",".","#",".",".",".",
-             "#","#","#","#","#","#","#","#","#","#","#","#",
-             ".",".",".",".",".",".",".",".","#",".",".",".",
-             ".",".",".",".",".",".",".",".","#",".",".",".",
-             ".",".",".",".",".",".",".",".","#",".",".",".",
-             ".",".",".",".",".",".",".",".","#",".",".",".",};
-
-            int cols = 12;
-            int rows = 10;
-
-            List<Rectangle> grassTiles = new List<Rectangle>();
+            List<string> tileMap = new List<string>(GetMap());
+            List<Rectangle> grassTiles = new List<Rectangle>(CreateGrassTiles(tileMap, cols, scl));
 
             while (!Raylib.WindowShouldClose())
             {
                 if (gameState == "game")
                 {
                     velocity = 5;
-                    playerTile = 0;
 
                     //GRASS COLLISION
-                    for (int i = 0; i < tileMap.Count; i++)
-                    {
-                        if (tileMap[i] == ".")
-                        {
-                            int x = i % cols;
-                            int y = i / cols;
-                            grassTiles.Add(new Rectangle(x * scl, y * scl, scl, scl));
-                        }
-                    }
-                    for (int i = 0; i < grassTiles.Count; i++)
-                    {
-                        if (Raylib.CheckCollisionRecs(player, grassTiles[i]) && moving == true)
-                        {
-                            velocity = 3;
-                            playerTile = i;
-                        }
-                    }
+                    velocity = GetGrassCollision(grassTiles, player, velocity);
 
                     //MOVEMENT CONTROLS
-                    if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT) || Raylib.IsKeyDown(KeyboardKey.KEY_D))
-                    {
-                        player.x += velocity;
-                        moving = true;
-                    }
-                    if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT) || Raylib.IsKeyDown(KeyboardKey.KEY_A))
-                    {
-                        player.x -= velocity;
-                        moving = true;
-                    }
-                    if (Raylib.IsKeyDown(KeyboardKey.KEY_DOWN) || Raylib.IsKeyDown(KeyboardKey.KEY_S))
-                    {
-                        player.y += velocity;
-                        moving = true;
-                    }
-                    if (Raylib.IsKeyDown(KeyboardKey.KEY_UP) || Raylib.IsKeyDown(KeyboardKey.KEY_W))
-                    {
-                        player.y -= velocity;
-                        moving = true;
-                    }
+                    (float posX, float posY, int vel) returnMovement = GetMovement(player.x, player.y, velocity);
+                    player.x = returnMovement.posX;
+                    player.y = returnMovement.posY;
+                    velocity = returnMovement.vel;
 
                     //BORDER CONTROL
-                    int returnPosX = border((int)player.x, 0, (int)cols * (int)scl - (int)player.width);
-                    player.x = returnPosX;
-                    int returnPosY = border((int)player.y, 0, (int)rows * (int)scl - (int)player.width);
-                    player.y = returnPosY;
+                    player.x = GetBorderControl((int)player.x, 0, (int)cols * (int)scl - (int)player.width);
+                    player.y = GetBorderControl((int)player.y, 0, (int)rows * (int)scl - (int)player.width);
 
                     //CAMERA 
                     camera.target = new Vector2(player.x + player.width / 2, player.y + player.height / 2);
@@ -122,49 +68,99 @@ namespace platformer_game
                     Raylib.BeginMode2D(camera);
 
                     //DRAW LEVEL
-                    for (int i = 0; i < rows; i++)
-                    {
-                        for (int j = 0; j < cols; j++)
-                        {
-                            if (tileMap[i * cols + j] == ".")
-                            {
-                                Raylib.DrawRectangle(j * scl, i * scl, scl, scl, Color.DARKGREEN);
-                            }
-                            else
-                            {
-                                Raylib.DrawRectangle(j * scl, i * scl, scl, scl, Color.DARKBROWN);
-                            }
-                        }
-                    }
-                    //  {".",".",".","#",".",".",".",".","#",".",".",".",
-                    //   ".",".",".","#",".",".",".",".","#",".",".",".",
-                    //   ".",".",".","#",".",".",".",".","#",".",".",".",
-                    //   ".",".",".","#",".",".",".",".","#",".",".",".",
-                    //   ".",".",".","#",".",".",".",".","#",".",".",".",
-                    //   "#","#","#","#","#","#","#","#","#","#","#","#",
-                    //   ".",".",".",".",".",".",".",".","#",".",".",".",
-                    //   ".",".",".",".",".",".",".",".","#",".",".",".",
-                    //   ".",".",".",".",".",".",".",".","#",".",".",".",
-                    //   ".",".",".",".",".",".",".",".","#",".",".",".",};    
+                    DrawLevel(tileMap, rows, cols, scl);
 
-                    //DRAW OUTLINE
-                    for (int i = 0; i < 12; i++)
-                    {
-                        Raylib.DrawLine(scl * i, 0, scl * i, rows * scl, Color.BLACK);
-                        Raylib.DrawLine(0, scl * i, cols * scl, scl * i, Color.BLACK);
-                    }
+                    //DRAW OUTLINES
+                    DrawOutlines(rows, cols, scl);
 
                     //DRAW PLAYER
-                    Raylib.DrawRectangleRec(player, Color.RED);
-                    Raylib.DrawLine((int)camera.target.X, -screenHeight * 10, (int)camera.target.X, screenHeight * 10, Color.GREEN);
-                    Raylib.DrawLine(-screenWidth * 10, (int)camera.target.Y, screenWidth * 10, (int)camera.target.Y, Color.GREEN);
+                    DrawPlayer(player, camera, screenWidth, screenHeight);
+
                     Raylib.EndMode2D();
                     Raylib.EndDrawing();
                 }
             }
         }
-        static int border(int pos, int min, int max)
+        static Camera2D CreateCamera(Rectangle player)
         {
+            //create camera and assign values 
+            Camera2D cam = new Camera2D();
+            cam.offset = new Vector2(1920 / 2, 1000 / 2);
+            cam.target = new Vector2(player.x + player.width / 2, player.y + player.height / 2);
+            cam.rotation = 0.0f;
+            cam.zoom = 1.0f;
+            return cam;
+        }
+        static List<string> GetMap()
+        {
+            //create map blueprint and add to list
+            List<string> map = new List<string>
+             {
+             ".",".",".","#",".",".",".",".","#",".",".",".",
+             ".",".",".","#",".",".",".",".","#",".",".",".",
+             ".",".",".","#",".",".",".",".","#",".",".",".",
+             ".",".",".","#",".",".",".",".","#",".",".",".",
+             ".",".",".","#",".",".",".",".","#",".",".",".",
+             "#","#","#","#","#","#","#","#","#","#","#","#",
+             ".",".",".",".",".",".",".",".","#",".",".",".",
+             ".",".",".",".",".",".",".",".","#",".",".",".",
+             ".",".",".",".",".",".",".",".","#",".",".",".",
+             ".",".",".",".",".",".",".",".","#",".",".",".",};
+            return map;
+        }
+        static List<Rectangle> CreateGrassTiles(List<string> map, int cols, int scl)
+        {
+            List<Rectangle> grass = new List<Rectangle>();
+            for (int i = 0; i < map.Count; i++)
+            {
+                //go through map list and locate grass, then set x and y values for each rectangle
+                //then add rectangle to list
+                if (map[i] == ".")
+                {
+                    int x = i % cols;
+                    int y = i / cols;
+                    grass.Add(new Rectangle(x * scl, y * scl, scl, scl));
+                }
+            }
+            return grass;
+        }
+        static int GetGrassCollision(List<Rectangle> grass, Rectangle player, int vel)
+        {
+            for (int i = 0; i < grass.Coxunt; i++)
+            {
+                //when player collides with grass, make player move slower
+                if (Raylib.CheckCollisionRecs(player, grass[i]))
+                {
+                    vel = 3;
+                }
+            }
+            return vel;
+        }
+        static (float, float, int) GetMovement(float posX, float posY, int vel)
+        {
+            //move in x-axis
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT) || Raylib.IsKeyDown(KeyboardKey.KEY_D))
+            {
+                posX += vel;
+            }
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT) || Raylib.IsKeyDown(KeyboardKey.KEY_A))
+            {
+                posX -= vel;
+            }
+            //move in y-axis
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_DOWN) || Raylib.IsKeyDown(KeyboardKey.KEY_S))
+            {
+                posY += vel;
+            }
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_UP) || Raylib.IsKeyDown(KeyboardKey.KEY_W))
+            {
+                posY -= vel;
+            }
+            return (posX, posY, vel);
+        }
+        static int GetBorderControl(int pos, int min, int max)
+        {
+            //prevent player from moving outside border
             if (pos < min)
             {
                 pos = min;
@@ -174,6 +170,42 @@ namespace platformer_game
                 pos = max;
             }
             return pos;
+        }
+
+        static void DrawLevel(List<string> map, int rows, int cols, int scl)
+        {
+            //go through each row then each column on that row, to determen wether it's a grass- or dirt-string
+            //then draw out tiles
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    if (map[i * cols + j] == ".")
+                    {
+                        Raylib.DrawRectangle(j * scl, i * scl, scl, scl, Color.DARKGREEN);
+                    }
+                    else
+                    {
+                        Raylib.DrawRectangle(j * scl, i * scl, scl, scl, Color.DARKBROWN);
+                    }
+                }
+            }
+        }
+        static void DrawOutlines(int rows, int cols, int scl)
+        {
+            //draw the outlines of the tiles 
+            for (int i = 0; i < cols; i++)
+            {
+                Raylib.DrawLine(scl * i, 0, scl * i, rows * scl, Color.BLACK);
+                Raylib.DrawLine(0, scl * i, cols * scl, scl * i, Color.BLACK);
+            }
+        }
+        static void DrawPlayer(Rectangle player, Camera2D camera, int screenWidth, int screenHeight)
+        {
+            //draw player and helping lines along x-axis and y-axis
+            Raylib.DrawRectangleRec(player, Color.RED);
+            Raylib.DrawLine((int)camera.target.X, -screenHeight * 10, (int)camera.target.X, screenHeight * 10, Color.GREEN);
+            Raylib.DrawLine(-screenWidth * 10, (int)camera.target.Y, screenWidth * 10, (int)camera.target.Y, Color.GREEN);
         }
     }
 }
